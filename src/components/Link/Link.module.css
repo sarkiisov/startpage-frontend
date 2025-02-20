@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+  cursor: pointer;
+}
+
+.anchor::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.icon {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.4rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+}
+
+.placeholder {
+  display: flex;
+  flex: 1;
+  align-self: stretch;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.title {
+  margin-top: 0.4rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-clamp: 2;
+}
