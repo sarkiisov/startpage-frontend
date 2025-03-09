@@ -5,7 +5,7 @@ import classes from './Link.module.css'
 export const Link = ({ href, icon, title }: LinkProps) => {
   const iconComponent = useMemo(() => {
     if (icon.type === 'FAVICON') {
-      return <img src={icon.imageSrc} />
+      return <img src={icon.url} />
     }
     if (icon.type === 'PLACEHOLDER') {
       return (

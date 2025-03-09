@@ -1,0 +1,16 @@
+input[type='radio']:checked + label {
+  border: 2px solid red;
+}
+
+input[type='radio'] + label {
+  border-width: 2px;
+  border-style: solid;
+  border-color: transparent;
+  display: block;
+}
+
+.fle {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}

@@ -9,7 +9,7 @@ export const SortableItem = ({ id, children }: SortableItemProps) => {
   })
 
   const style = {
-    opacity: isDragging ? 0.6 : 1,
+    opacity: isDragging ? 0 : 1,
     transform: CSS.Transform.toString(transform),
     transition
   }
