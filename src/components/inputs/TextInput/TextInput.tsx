@@ -1,14 +1,13 @@
 import { useController, useFormContext } from 'react-hook-form'
 import { TextInputProps } from './TextInput.types'
+import './TextInput.styles.css'
+import { InputWrapper } from '../InputWrapper'
+import { useId } from 'react'
 
-export const TextInput = ({
-  name,
-  label,
-  shouldUnregister,
-  readOnly,
-  ...props
-}: TextInputProps) => {
+export const TextInput = ({ name, shouldUnregister, readOnly, ...props }: TextInputProps) => {
   const { control, formState } = useFormContext()
+
+  const id = useId()
 
   const {
     field,
@@ -16,10 +15,14 @@ export const TextInput = ({
   } = useController({ name, control, shouldUnregister, defaultValue: '' })
 
   return (
-    <div>
-      {label && <label htmlFor={name}>{label}</label>}
-      <input {...field} {...props} readOnly={formState.isSubmitting || readOnly} id={name} />
-      <span>{error?.message}</span>
-    </div>
+    <InputWrapper id={id} error={error?.message} {...props}>
+      <input
+        {...field}
+        {...props}
+        className="text-input"
+        readOnly={formState.isSubmitting || readOnly}
+        id={id}
+      />
+    </InputWrapper>
   )
 }
