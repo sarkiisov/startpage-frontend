@@ -1,9 +1,7 @@
-export type LinkIcon =
-  | { type: 'FAVICON'; imageSrc: string }
-  | { type: 'PLACEHOLDER'; color: string }
+export type LinkIcon = { type: 'FAVICON'; src: string } | { type: 'PLACEHOLDER'; color: string }
 
 export type Link = {
-  url: string
+  href: string
   icon: LinkIcon
   title: string
 }

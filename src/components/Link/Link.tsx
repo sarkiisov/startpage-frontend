@@ -1,29 +1,31 @@
 import { useMemo } from 'react'
 import { LinkProps } from './Link.types'
-import classes from './Link.module.css'
+import { cn } from '@/utils'
 
-export const Link = ({ href, icon, title }: LinkProps) => {
+export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
   const iconComponent = useMemo(() => {
-    if (icon.type === 'FAVICON') {
-      return <img src={icon.url} />
-    }
-    if (icon.type === 'PLACEHOLDER') {
-      return (
-        <div
-          style={{ background: icon.color, textAlign: 'center', verticalAlign: 'center' }}
-          className={classes.placeholder}
-        >
-          <span>{title[0].toUpperCase()}</span>
-        </div>
-      )
+    switch (icon.type) {
+      case 'FAVICON':
+        return <img src={icon.src} />
+      case 'PLACEHOLDER':
+        return (
+          <div
+            style={{ '--color': icon.color } as React.CSSProperties}
+            className="flex justify-center items-center w-full bg-(--color)"
+          >
+            <span className="text-white text-3xl font-medium">{title[0].toUpperCase()}</span>
+          </div>
+        )
     }
   }, [icon, title])
 
   return (
-    <div className={classes.root}>
-      <a className={classes.anchor} href={href} />
-      <div className={classes.icon}>{iconComponent}</div>
-      <div className={classes.title}>{title}</div>
+    <div className={cn('relative cursor-pointer', className)} {...props}>
+      <a className="content-none absolute inset-0" href={href} />
+      <div className="flex w-full justify-center aspect-square rounded-md shadow-sm overflow-hidden">
+        {iconComponent}
+      </div>
+      <div className="mt-2 text-xs font-medium text-center truncate line-clamp-2">{title}</div>
     </div>
   )
 }

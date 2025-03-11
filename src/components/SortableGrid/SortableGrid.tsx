@@ -2,6 +2,8 @@ import {
   Active,
   closestCorners,
   DndContext,
+  DragEndEvent,
+  DragStartEvent,
   KeyboardSensor,
   MouseSensor,
   UniqueIdentifier,
@@ -10,10 +12,11 @@ import {
 } from '@dnd-kit/core'
 import { arrayMove, rectSortingStrategy, SortableContext } from '@dnd-kit/sortable'
 import { SortableGridProps, SortableItem as SortableItemType } from './SortableGrid.types'
-import React, { useCallback, useMemo, useState } from 'react'
+import { Fragment, useCallback, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { SortableOverlay } from './SortableOverlay'
 import { SortableItem } from './SortableItem'
+import { cn } from '@/utils'
 
 export const SortabelGrid = <T extends SortableItemType>({
   columns,
@@ -21,14 +24,13 @@ export const SortabelGrid = <T extends SortableItemType>({
   renderItem,
   onChange,
   style,
+  className,
   ...props
 }: SortableGridProps<T>) => {
   const [active, setActive] = useState<Active | null>(null)
 
   const mouseSensor = useSensor(MouseSensor, {
-    activationConstraint: {
-      distance: 5
-    }
+    activationConstraint: { distance: 5 }
   })
   const keyboardSensor = useSensor(KeyboardSensor)
   const sensors = useSensors(mouseSensor, keyboardSensor)
@@ -45,45 +47,48 @@ export const SortabelGrid = <T extends SortableItemType>({
     return { index, item: items[index] }
   }, [active, items, getItemKey])
 
+  const handleDragCancel = () => {
+    setActive(null)
+  }
+
+  const handleDragStart = (event: DragStartEvent) => {
+    const { active } = event
+
+    setActive(active)
+  }
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+
+    if (over && active.id !== over?.id) {
+      const activeIndex = active.data.current?.sortable?.index
+      const overIndex = over.data.current?.sortable?.index
+
+      if (activeIndex !== undefined && overIndex !== undefined) {
+        onChange(arrayMove(items, activeIndex, overIndex))
+      }
+    }
+    setActive(null)
+  }
+
   return (
     <DndContext
       sensors={sensors}
-      onDragCancel={() => {
-        setActive(null)
-      }}
-      onDragEnd={(event) => {
-        const { active, over } = event
-
-        if (over && active.id !== over?.id) {
-          const activeIndex = active.data.current?.sortable?.index
-          const overIndex = over.data.current?.sortable?.index
-
-          if (activeIndex !== undefined && overIndex !== undefined) {
-            onChange(arrayMove(items, activeIndex, overIndex))
-          }
-        }
-        setActive(null)
-      }}
-      onDragStart={({ active }) => {
-        setActive(active)
-      }}
+      onDragCancel={handleDragCancel}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
       collisionDetection={closestCorners}
     >
       <div
-        style={{
-          ...style,
-          display: 'grid',
-          height: 'fit-content',
-          gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          gap: '2rem'
-        }}
+        style={{ '--columns': `repeat(${columns}, 1fr)`, ...style } as React.CSSProperties}
+        className={cn(`grid h-fit gap-6 grid-cols-(--columns)`, className)}
         {...props}
       >
         <SortableContext items={items} strategy={rectSortingStrategy}>
           {items.map((item, index) => (
-            <React.Fragment key={getItemKey(item)}>
+            <Fragment key={getItemKey(item)}>
               <SortableItem id={getItemKey(item)}>{renderItem(item, index)}</SortableItem>
-            </React.Fragment>
+            </Fragment>
           ))}
         </SortableContext>
       </div>

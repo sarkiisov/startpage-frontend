@@ -1,9 +1,4 @@
-export type LinkIcon = { type: 'FAVICON'; url: string } | { type: 'PLACEHOLDER'; color: string }
+import { Link } from '@/types'
+import { HTMLAttributes } from 'react'
 
-export type LinkType = LinkIcon['type']
-
-export type LinkProps = {
-  href: string
-  icon: LinkIcon
-  title: string
-}
+export type LinkProps = HTMLAttributes<HTMLDivElement> & Link

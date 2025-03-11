@@ -1,15 +1,1 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  /* font-family: 'Inter', sans-serif; */
-  font-family: system-ui;
-  font-smooth: never;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  /* background: rgb(30, 30, 30); */
-  background: white;
-}
+@import 'tailwindcss';
