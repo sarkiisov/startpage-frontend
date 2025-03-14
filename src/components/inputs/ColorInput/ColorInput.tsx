@@ -1,18 +1,18 @@
 import { useController, useFormContext } from 'react-hook-form'
-import { TextInputProps } from './TextInput.types'
-import { InputWrapper } from '../InputWrapper'
+import { ColorInputProps } from './ColorInput.types'
 import { useId } from 'react'
+import { InputWrapper } from '../InputWrapper'
 import { cn } from '@/utils'
 
-export const TextInput = ({
+export const ColorInput = ({
   label,
   withAsterisk,
   name,
   shouldUnregister,
-  className,
   readOnly,
+  className,
   ...props
-}: TextInputProps) => {
+}: ColorInputProps) => {
   const { control, formState } = useFormContext()
 
   const id = useId()
@@ -20,14 +20,18 @@ export const TextInput = ({
   const {
     field,
     fieldState: { error }
-  } = useController({ name, control, shouldUnregister, defaultValue: '' })
+  } = useController({ name, control, shouldUnregister })
 
   return (
     <InputWrapper id={id} label={label} withAsterisk={withAsterisk} error={error?.message}>
       <input
         {...field}
         {...props}
-        className={cn('border border-gray-200 rounded-lg block w-full p-2.5', className)}
+        className={cn(
+          'block w-14 h-10 p-1 border border-gray-200 rounded-lg cursor-pointer',
+          className
+        )}
+        type="color"
         readOnly={formState.isSubmitting || readOnly}
         id={id}
       />

@@ -1,6 +1,6 @@
-export type InputBaseProps = {
+import { InputWrapperProps } from './InputWrapper'
+
+export type InputProps = InputWrapperProps & {
   name: string
-  label?: string
   shouldUnregister?: boolean
-  withAsterisk?: boolean
 }

@@ -1,4 +1,4 @@
 import { InputProps } from '../types'
 
-export type TextInputProps = InputProps &
+export type ColorInputProps = InputProps &
   React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
