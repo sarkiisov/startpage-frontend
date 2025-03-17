@@ -11,9 +11,9 @@ export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
         return (
           <div
             style={{ '--color': icon.color } as React.CSSProperties}
-            className="flex justify-center items-center w-full bg-(--color)"
+            className="flex w-full items-center justify-center bg-(--color)"
           >
-            <span className="text-white text-3xl font-medium">{title[0].toUpperCase()}</span>
+            <span className="text-3xl font-medium text-white">{title[0].toUpperCase()}</span>
           </div>
         )
     }
@@ -21,11 +21,13 @@ export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
 
   return (
     <div className={cn('relative cursor-pointer', className)} {...props}>
-      <a className="content-none absolute inset-0" href={href} />
-      <div className="flex w-full justify-center aspect-square rounded-md shadow-sm overflow-hidden">
+      <a className="absolute inset-0 content-none" href={href} />
+      <div className="flex aspect-square w-full justify-center overflow-hidden rounded-md shadow-sm">
         {iconComponent}
       </div>
-      <div className="mt-2 text-xs font-medium text-center truncate line-clamp-2">{title}</div>
+      <div className="mt-2 line-clamp-2 truncate text-center text-xs font-medium text-white">
+        {title}
+      </div>
     </div>
   )
 }

@@ -27,7 +27,10 @@ export const TextInput = ({
       <input
         {...field}
         {...props}
-        className={cn('border border-gray-200 rounded-lg block w-full p-2.5', className)}
+        className={cn(
+          'block w-full rounded-lg border border-neutral-700 bg-neutral-950 p-2.5 text-white transition-colors focus:border-neutral-300 focus:outline-0',
+          className
+        )}
         readOnly={formState.isSubmitting || readOnly}
         id={id}
       />

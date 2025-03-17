@@ -45,7 +45,7 @@ const getFavicons = async (url: string): Promise<string[]> => {
   return iconURLs
 }
 
-export const useFindManyFavicons = (url: string, { enabled }: { enabled: boolean }) => {
+export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolean }) => {
   const [data, setData] = useState<string[]>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>()
@@ -56,19 +56,19 @@ export const useFindManyFavicons = (url: string, { enabled }: { enabled: boolean
       setIsLoading(true)
       setError(undefined)
 
-      await getFavicons(url).then(setData)
+      await getFavicons(href).then(setData)
     } catch (error) {
       setError((error as unknown as Error).message)
     } finally {
       setIsLoading(false)
     }
-  }, [url])
+  }, [href])
 
   useEffect(() => {
     if (!enabled) return
 
     faviconsHandler()
-  }, [enabled, faviconsHandler, url])
+  }, [enabled, faviconsHandler, href])
 
   return {
     data,

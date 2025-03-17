@@ -36,7 +36,7 @@ export const Select = ({
         {...field}
         {...props}
         className={cn(
-          'appearance-none p-2.5 pe-9 block w-full border border-gray-200 rounded-lg',
+          'block w-full appearance-none rounded-lg border border-neutral-700 p-2.5 pe-9 text-white outline-0 focus:border-neutral-300',
           className
         )}
         id={id}
