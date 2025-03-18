@@ -1,1 +1,5 @@
 @import 'tailwindcss';
+
+input::-webkit-color-swatch {
+  border: none;
+}
