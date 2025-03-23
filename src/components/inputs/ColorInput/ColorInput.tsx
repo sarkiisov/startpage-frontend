@@ -20,7 +20,7 @@ export const ColorInput = ({
   const {
     field,
     fieldState: { error }
-  } = useController({ name, control, shouldUnregister })
+  } = useController({ name, control, shouldUnregister, defaultValue: '#eeeeee' })
 
   return (
     <InputWrapper id={id} label={label} withAsterisk={withAsterisk} error={error?.message}>
