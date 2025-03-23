@@ -1,3 +1,4 @@
+import { getSettings } from '@/components/app'
 import { useCallback, useEffect, useState } from 'react'
 import invariant from 'tiny-invariant'
 
@@ -30,13 +31,15 @@ const isValidHTTPUrl = (str: string) => {
 const getFavicons = async (url: string): Promise<string[]> => {
   invariant(isValidHTTPUrl(url), 'URL is not valid')
 
-  const iconIds = (await fetch(`${import.meta.env.VITE_BACKEND_URL}/favicons?url=${url}`).then(
-    (response) => response.json()
+  const { backendUrl } = getSettings()
+
+  const iconIds = (await fetch(`${backendUrl}/favicons?url=${url}`).then((response) =>
+    response.json()
   )) as number[]
 
   const iconURLs = await Promise.all(
     iconIds.map((iconId) =>
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/files/${iconId}`)
+      fetch(`${backendUrl}/files/${iconId}`)
         .then((response) => response.blob())
         .then((blob) => convertBlobToDataURL(blob))
     )
@@ -48,15 +51,19 @@ const getFavicons = async (url: string): Promise<string[]> => {
 export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolean }) => {
   const [data, setData] = useState<string[]>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [error, setError] = useState<string>()
 
   const faviconsHandler = useCallback(async () => {
     try {
       setData(undefined)
       setIsLoading(true)
+      setIsSuccess(false)
       setError(undefined)
 
       await getFavicons(href).then(setData)
+
+      setIsSuccess(true)
     } catch (error) {
       setError((error as unknown as Error).message)
     } finally {
@@ -73,6 +80,7 @@ export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolea
   return {
     data,
     isLoading,
+    isSuccess,
     error
   }
 }

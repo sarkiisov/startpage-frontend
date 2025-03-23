@@ -37,38 +37,41 @@ const LinkProvider = ({ children }: React.PropsWithChildren) => {
     })
   }, [closeModal, openModal, setLinks])
 
-  const requestEditLink = (link: Link) => {
-    const editLink = (nextLink: Link) => {
-      setLinks((links) => {
-        const index = links.findIndex((link) => link.id === nextLink.id)
+  const requestEditLink = useCallback(
+    (link: Link) => {
+      const editLink = (nextLink: Link) => {
+        setLinks((links) => {
+          const index = links.findIndex((link) => link.id === nextLink.id)
 
-        if (index === -1) return links
+          if (index === -1) return links
 
-        const nextLinks = [...links]
-        nextLinks[index] = nextLink
+          const nextLinks = [...links]
+          nextLinks[index] = nextLink
 
-        return nextLinks
+          return nextLinks
+        })
+      }
+
+      openModal({
+        title: 'Edit link',
+        children: (
+          <LinkForm
+            defaultValues={link}
+            onSubmit={(nextLink) => {
+              editLink({ id: link.id, ...nextLink })
+              closeModal()
+            }}
+          >
+            <LinkForm.Body />
+            <div className="mt-4 flex justify-end">
+              <LinkForm.Actions />
+            </div>
+          </LinkForm>
+        )
       })
-    }
-
-    openModal({
-      title: 'Edit link',
-      children: (
-        <LinkForm
-          defaultValues={link}
-          onSubmit={(nextLink) => {
-            editLink({ id: link.id, ...nextLink })
-            closeModal()
-          }}
-        >
-          <LinkForm.Body />
-          <div className="mt-4 flex justify-end">
-            <LinkForm.Actions />
-          </div>
-        </LinkForm>
-      )
-    })
-  }
+    },
+    [closeModal, openModal, setLinks]
+  )
 
   const requestDeleteLink = useCallback(
     (link: Link) => {
@@ -85,7 +88,13 @@ const LinkProvider = ({ children }: React.PropsWithChildren) => {
               <Button variant="secondary" onClick={closeModal}>
                 Dismiss
               </Button>
-              <Button variant="destructive" onClick={() => deleteLink(link.id)}>
+              <Button
+                variant="destructive"
+                onClick={() => {
+                  deleteLink(link.id)
+                  closeModal()
+                }}
+              >
                 Confirm
               </Button>
             </div>

@@ -1,89 +1,50 @@
-import { useState } from 'react'
-import { ContextMenu, Link } from './components'
-import { SortabelGrid } from './components/SortableGrid'
+import { ContextMenu, Link, useLinkContext, useSettingsContext } from './components'
+import { SortabelGrid } from './components/dnd/SortableGrid'
 
-import { Modal } from './components/Modal'
-import { Center } from './components/layouts'
-import { LinkForm } from './components/LinkForm/LinkForm'
-
-const links = [
-  {
-    id: 1,
-    href: 'https://www.geeksforgeeks.org/how-to-find-an-average-color-of-an-image-using-javascript/',
-    title: 'YouTube',
-    icon: { type: 'PLACEHOLDER', color: 'red' }
-  },
-  {
-    id: 2,
-    href: 'https://plus.unsplash.com/premium_photo-1681422570054-9ae5b8b03e46?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dW5zcGxhc2glMjBhcHB8ZW58MHx8MHx8fDA%3D',
-
-    title: 'Reddit',
-    icon: {
-      type: 'FAVICON',
-      url: 'https://plus.unsplash.com/premium_photo-1681422570054-9ae5b8b03e46?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dW5zcGxhc2glMjBhcHB8ZW58MHx8MHx8fDA%3D'
-    }
-  },
-  {
-    id: 3,
-    href: 'https://www.geeksforgeeks.org/how-to-find-an-average-color-of-an-image-using-javascript/',
-    title: 'DeepSeek',
-    icon: {
-      type: 'FAVICON',
-      url: 'https://www.redditstatic.com/avatars/defaults/v2/avatar_default_5.png'
-    }
-  }
-]
+import Plus from '@/assets/icons/Plus.svg?react'
+import Gear from '@/assets/icons/Gear.svg?react'
 
 function App() {
-  const [items, setItems] = useState<(any & { id: string | number })[]>(links)
-
-  const [isOpened, setIsOpened] = useState(false)
+  const { links, setLinks, requestAddLink, requestEditLink, requestDeleteLink } = useLinkContext()
+  const {
+    settings: { columns },
+    requestEditSettings
+  } = useSettingsContext()
 
   return (
     <>
-      <Center>
-        <Modal open={isOpened} onOpenChange={setIsOpened}>
-          {/* <span>Hello from child</span> */}
-          <LinkForm />
-          <button onClick={() => setIsOpened(false)}>Close modal</button>
-        </Modal>
-
+      <div className="flex h-screen items-center justify-center">
         <SortabelGrid
-          columns={3}
-          items={items}
-          onChange={(items) => setItems(items)}
-          renderItem={(item) => (
+          columns={Math.min(links.length, columns)}
+          items={links}
+          onChange={(items) => setLinks(items)}
+          renderItem={(link) => (
             <ContextMenu>
               <ContextMenu.Trigger>
-                <div style={{ width: '4rem' }}>
-                  <Link {...item} />
-                </div>
+                <Link className="w-[4rem]" {...link} />
               </ContextMenu.Trigger>
               <ContextMenu.Content>
-                <ContextMenu.Item onClick={() => alert('Option 1 clicked')}>
-                  Изменить
-                </ContextMenu.Item>
-                <ContextMenu.Item onClick={() => alert('Option 2 clicked')}>
-                  Удалить
-                </ContextMenu.Item>
+                <ContextMenu.Item onClick={() => requestEditLink(link)}>Edit</ContextMenu.Item>
+                <ContextMenu.Item onClick={() => requestDeleteLink(link)}>Delete</ContextMenu.Item>
               </ContextMenu.Content>
             </ContextMenu>
           )}
         />
-        <button
-          onClick={() => setIsOpened(true)}
-          style={{
-            position: 'absolute',
-            right: 0,
-            bottom: 0,
-            margin: '1rem',
-            padding: '1rem',
-            fontSize: '1rem'
-          }}
-        >
-          +
-        </button>
-      </Center>
+        <div className="absolute right-0 bottom-0 m-5 flex flex-col gap-5">
+          <button
+            onClick={requestEditSettings}
+            className="cursor-pointer text-neutral-500 transition-colors hover:text-neutral-300"
+          >
+            <Gear className="h-5 w-5" />
+          </button>
+          <button
+            className="cursor-pointer text-neutral-500 transition-colors hover:text-neutral-300"
+            onClick={requestAddLink}
+          >
+            <Plus className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
     </>
   )
 }

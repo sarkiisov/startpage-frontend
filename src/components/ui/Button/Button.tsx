@@ -9,7 +9,7 @@ export const Button = ({ variant = 'primary', className, children, ...props }: B
         {
           primary: 'bg-white text-black hover:bg-neutral-300',
           secondary: 'border border-neutral-700 bg-transparent text-white hover:bg-neutral-800',
-          destructive: 'bg-red-600 text-white hover:bg-red-700'
+          destructive: 'bg-red-500 text-white hover:bg-red-600'
         }[variant],
         className
       )}

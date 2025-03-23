@@ -29,7 +29,7 @@ const FaviconInputOption = ({ faviconSrc }: FaviconInputOptionProps) => {
         className="overflow-hidden rounded-lg border border-gray-200 outline-2 outline-offset-2 outline-transparent transition-colors peer-checked:outline-white"
         htmlFor={id}
       >
-        <img className="h-14 w-14" src={faviconSrc} />
+        <img className="h-14 w-14 bg-white" src={faviconSrc} />
       </label>
     </div>
   )
@@ -38,17 +38,28 @@ const FaviconInputOption = ({ faviconSrc }: FaviconInputOptionProps) => {
 export const FaviconInput = () => {
   const { watch, getFieldState } = useFormContext<LinkFormData>()
 
-  const { error } = getFieldState('icon.src')
+  const { error: fieldError } = getFieldState('icon.src')
 
   const href = watch('href')
 
-  const { data: images, isLoading } = useFindManyFavicons(href, { enabled: Boolean(href) })
+  const {
+    data: images,
+    isLoading,
+    isSuccess,
+    error
+  } = useFindManyFavicons(href, { enabled: Boolean(href) })
 
   return (
-    <InputWrapper label="Icon" error={error?.message}>
-      <div className="flex flex-wrap gap-2.5">
-        {isLoading && <span>Загрузка изображений</span>}
-        {images?.map((image, index) => <FaviconInputOption key={index} faviconSrc={image} />)}
+    <InputWrapper label="Icon" error={fieldError?.message}>
+      <div className="flex flex-wrap gap-2.5 text-white">
+        {isLoading && <span className="text-white">Loading favicons...</span>}
+        {isSuccess &&
+          (images?.length ? (
+            images?.map((image) => <FaviconInputOption key={image} faviconSrc={image} />)
+          ) : (
+            <span className="text-white">No favicons found</span>
+          ))}
+        {error && <span className="text-red-500">{error}</span>}
       </div>
     </InputWrapper>
   )

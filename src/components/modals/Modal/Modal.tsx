@@ -38,6 +38,7 @@ export const Modal = ({ open, onOpenChange, title, children }: ModalProps) => {
                   {title}
                 </h2>
                 <button
+                  tabIndex={-1}
                   onClick={() => onOpenChange?.(false)}
                   className="cursor-pointer text-neutral-500 transition-colors hover:text-neutral-300"
                 >
