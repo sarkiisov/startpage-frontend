@@ -11,7 +11,9 @@ export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
       <div className="flex aspect-square w-full justify-center overflow-hidden rounded-md shadow-sm">
         {iconComponent}
       </div>
-      <div className="mt-2 line-clamp-1 text-center text-xs font-medium text-white">{title}</div>
+      <div className="mt-2 line-clamp-1 inline-block w-full text-center text-xs font-medium text-ellipsis text-white">
+        {title}
+      </div>
     </div>
   )
 }

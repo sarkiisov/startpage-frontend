@@ -26,7 +26,7 @@ const FaviconInputOption = ({ faviconSrc }: FaviconInputOptionProps) => {
         {...fieldProps}
       />
       <label
-        className="overflow-hidden rounded-lg border border-gray-200 outline-2 outline-offset-2 outline-transparent transition-colors peer-checked:outline-white"
+        className="overflow-hidden rounded-lg border border-neutral-300 outline-2 outline-offset-2 outline-transparent transition-colors peer-checked:outline-white"
         htmlFor={id}
       >
         <img className="h-14 w-14 bg-white" src={faviconSrc} />
