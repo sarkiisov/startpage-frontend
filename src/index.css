@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 body {
-  @apply bg-neutral-950;
+  @apply bg-neutral-950 font-sans text-[100%];
 }
 
 input::-webkit-color-swatch {
