@@ -80,7 +80,12 @@ export const SortabelGrid = <T extends SortableItemType>({
       collisionDetection={closestCorners}
     >
       <div
-        style={{ '--columns': `repeat(${columns}, 1fr)`, ...style } as React.CSSProperties}
+        style={
+          {
+            '--columns': `repeat(${Math.min(items.length, columns)}, 1fr)`,
+            ...style
+          } as React.CSSProperties
+        }
         className={cn(`grid h-fit grid-cols-(--columns) gap-6`, className)}
         {...props}
       >

@@ -5,7 +5,7 @@ import { SettingsForm } from '../SettingsForm'
 import { useCallback } from 'react'
 import { SettingsContext } from './SettingsProvider.types'
 import { defaultSettings } from './SettingsProvider.consts'
-import { Settings } from '@/types'
+import { Settings } from '../types'
 
 const [SettingsContextProvider, useSettingsContext] = createSafeContext<SettingsContext>(
   'SettingsProvider was not found in the tree'

@@ -1,6 +1,6 @@
 import { Button, LinkForm, useModalContext } from '@/components'
 import { useLocalStorage } from '@/hooks'
-import { Link } from '@/types'
+import { Link } from '../types'
 import { createSafeContext } from '@/utils'
 import { useCallback } from 'react'
 import { LinkContext } from './LinkProvider.types'

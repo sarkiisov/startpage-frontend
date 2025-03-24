@@ -1,9 +1,9 @@
-import { Link } from '@/types'
 import { cn, getColorVariant, hexToRgb } from '@/utils'
+import { Link } from '../types'
 
 export const useLinkIconComponent = ({ icon, title }: Pick<Link, 'title' | 'icon'>) => {
   if (icon.type === 'FAVICON') {
-    return <img className="bg-white" src={icon.src} />
+    return <img src={icon.src} />
   }
   if (icon.type === 'PLACEHOLDER') {
     const rgbColor = hexToRgb(icon.color)
