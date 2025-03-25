@@ -86,7 +86,7 @@ export const SortabelGrid = <T extends SortableItemType>({
             ...style
           } as React.CSSProperties
         }
-        className={cn(`grid h-fit grid-cols-(--columns) gap-6`, className)}
+        className={cn(`grid h-fit grid-cols-(--columns) gap-5`, className)}
         {...props}
       >
         <SortableContext items={items} strategy={rectSortingStrategy}>

@@ -21,7 +21,7 @@ function App() {
           renderItem={(link) => (
             <ContextMenu>
               <ContextMenu.Trigger>
-                <Link className="w-15" {...link} />
+                <Link className="w-17" {...link} />
               </ContextMenu.Trigger>
               <ContextMenu.Content>
                 <ContextMenu.Item onClick={() => requestEditLink(link)}>Edit</ContextMenu.Item>

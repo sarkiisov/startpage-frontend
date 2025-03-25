@@ -78,7 +78,7 @@ export const CotextMenuContent = ({ children }: ContextMenuContentProps) => {
       <div
         ref={refs.setFloating}
         {...getFloatingProps()}
-        className="min-w-28 overflow-hidden rounded-md border border-neutral-700 bg-neutral-950/90 p-1.5 backdrop-blur-xl"
+        className="min-w-28 overflow-hidden rounded-md border border-neutral-700 bg-neutral-950/90 p-1 backdrop-blur-xl"
         style={{
           ...floatingStyles,
           top: position.y,
@@ -102,7 +102,7 @@ export const ContextMenuItem = ({ children, onClick }: ContextMenuItemProps) => 
   return (
     <div
       onClick={handleItemClick}
-      className="cursor-pointer rounded px-2 py-1.5 text-left text-sm font-medium text-white hover:bg-neutral-800"
+      className="cursor-pointer rounded px-2 py-1 text-left text-sm font-medium text-white hover:bg-neutral-800"
     >
       {children}
     </div>

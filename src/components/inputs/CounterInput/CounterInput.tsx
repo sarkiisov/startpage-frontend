@@ -45,7 +45,7 @@ export const CounterInput = ({
         <button
           onClick={handleDecrementClick}
           type="button"
-          className="rounded border border-neutral-700 px-4 py-1 hover:bg-neutral-800"
+          className="cursor-pointer rounded border border-neutral-700 px-4 py-1 hover:bg-neutral-800"
         >
           -
         </button>
@@ -59,7 +59,7 @@ export const CounterInput = ({
         <button
           onClick={handleIncrementClick}
           type="button"
-          className="rounded border border-neutral-700 px-4 py-1 hover:bg-neutral-800"
+          className="cursor-pointer rounded border border-neutral-700 px-4 py-1 hover:bg-neutral-800"
         >
           +
         </button>
