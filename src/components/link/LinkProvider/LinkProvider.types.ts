@@ -1,5 +1,5 @@
 import { Dispatch } from 'react'
-import { Link } from '../types'
+import { Link } from '@/types'
 
 export type LinkContext = {
   links: Link[]

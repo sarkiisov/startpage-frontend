@@ -1,4 +1,4 @@
 import { HTMLAttributes } from 'react'
-import { Link } from '../types'
+import { Link } from '@/types'
 
 export type LinkProps = HTMLAttributes<HTMLDivElement> & Omit<Link, 'id'>

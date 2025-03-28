@@ -3,7 +3,7 @@ import { SettingsFormData, SettingsFormProps } from './SettingsForm.types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SettingsFormSchema } from './SettingsForm.schema'
 import { Button } from '@/components/ui'
-import { CounterInput, TextInput } from '@/components/inputs'
+import { CounterInput, FileInput, TextInput } from '@/components/inputs'
 
 export const SettingsForm = ({ defaultValues, onSubmit, children }: SettingsFormProps) => {
   const form = useForm<SettingsFormData>({
@@ -23,6 +23,7 @@ const SettingsFormBody = () => {
     <div className="flex flex-col gap-3">
       <CounterInput name="columns" label="Columns" />
       <TextInput name="backendUrl" label="Backend URL" />
+      <FileInput name="background" label="Background" />
     </div>
   )
 }

@@ -20,15 +20,21 @@ export const Modal = ({ open, onOpenChange, title, children }: ModalProps) => {
 
   const headingId = useId()
 
-  const { isMounted, styles } = useTransitionStyles(context)
+  const { isMounted, styles } = useTransitionStyles(context, {
+    duration: 300,
+    initial: { opacity: 0, transform: 'translateY(8px)' },
+    open: { opacity: 1, transform: 'translateY(0)' },
+    close: { opacity: 0, transform: 'translateY(8px)' }
+  })
 
   return (
     <FloatingPortal>
       {isMounted && (
-        <FloatingOverlay className="grid place-items-center bg-black/20" lockScroll style={styles}>
+        <FloatingOverlay className="grid place-items-center bg-black/0" lockScroll style={styles}>
           <FloatingFocusManager context={context}>
             <div
-              className="w-md rounded-md border border-neutral-800 bg-neutral-950/90 p-4 backdrop-blur-xl"
+              className="w-md rounded-md border border-neutral-800 bg-neutral-900 p-4 shadow-black/30"
+              style={{ boxShadow: '0px 8px 16px 2px var(--tw-shadow-color)' }}
               ref={refs.setFloating}
               aria-labelledby={headingId}
               {...getFloatingProps()}
@@ -42,7 +48,7 @@ export const Modal = ({ open, onOpenChange, title, children }: ModalProps) => {
                   onClick={() => onOpenChange?.(false)}
                   className="cursor-pointer text-neutral-500 transition-colors hover:text-neutral-300"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
 

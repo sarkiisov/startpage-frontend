@@ -78,7 +78,7 @@ export const CotextMenuContent = ({ children }: ContextMenuContentProps) => {
       <div
         ref={refs.setFloating}
         {...getFloatingProps()}
-        className="min-w-28 overflow-hidden rounded-md border border-neutral-700 bg-neutral-950/90 p-1 backdrop-blur-xl"
+        className="min-w-28 overflow-hidden rounded-md border border-neutral-700 bg-neutral-900 p-1 shadow-2xl"
         style={{
           ...floatingStyles,
           top: position.y,
