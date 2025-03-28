@@ -28,7 +28,7 @@ export const ColorInput = ({
         {...field}
         {...props}
         className={cn(
-          'block h-10 w-16 cursor-pointer rounded-lg border border-neutral-700 p-1 text-white transition-colors focus:border-neutral-300',
+          'block h-10 w-16 cursor-pointer rounded-lg border border-neutral-800 bg-neutral-950/40 p-1 text-white transition-colors focus:ring focus:ring-neutral-300 focus:outline-0',
           className
         )}
         type="color"

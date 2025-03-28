@@ -4,6 +4,22 @@ import { CounterInputProps } from './CounterInput.types'
 import { InputWrapper } from '../InputWrapper'
 import { cn } from '@/utils'
 
+const CounterInputButton = ({
+  className,
+  ...props
+}: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) => {
+  return (
+    <button
+      type="button"
+      className={cn(
+        'cursor-pointer rounded border border-neutral-800 bg-neutral-950/40 px-4 py-1 transition-colors hover:bg-neutral-800 focus:ring focus:ring-neutral-300 focus:outline-0',
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 export const CounterInput = ({
   label,
   withAsterisk,
@@ -41,28 +57,16 @@ export const CounterInput = ({
 
   return (
     <InputWrapper id={id} label={label} withAsterisk={withAsterisk} error={error?.message}>
-      <div className={cn('flex gap-3 text-white', className)}>
-        <button
-          onClick={handleDecrementClick}
-          type="button"
-          className="cursor-pointer rounded border border-neutral-700 px-4 py-1 hover:bg-neutral-800"
-        >
-          -
-        </button>
+      <div className={cn('flex text-white', className)}>
+        <CounterInputButton onClick={handleDecrementClick}>-</CounterInputButton>
         <input
           {...field}
           {...props}
           type="number"
-          className="appeare w-8 appearance-none text-center focus:outline-0"
+          className="h-fit w-12 border-0 bg-transparent text-center ring-0 focus:outline-0"
           id={id}
         />
-        <button
-          onClick={handleIncrementClick}
-          type="button"
-          className="cursor-pointer rounded border border-neutral-700 px-4 py-1 hover:bg-neutral-800"
-        >
-          +
-        </button>
+        <CounterInputButton onClick={handleIncrementClick}>+</CounterInputButton>
       </div>
     </InputWrapper>
   )
