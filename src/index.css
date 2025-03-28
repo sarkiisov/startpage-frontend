@@ -1,11 +1,12 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/forms';
 
 body {
-  @apply bg-neutral-950 font-sans text-[100%];
+  @apply bg-neutral-950 bg-cover bg-center font-sans text-[100%];
 }
 
 input::-webkit-color-swatch {
-  @apply border-none;
+  @apply rounded-sm border-none;
 }
 
 input[type='number']::-webkit-inner-spin-button,
