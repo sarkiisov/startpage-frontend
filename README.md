@@ -1,4 +1,4 @@
-# Startpage Frontend
+# Startpage frontend
 
 A customizable Chrome startpage extension with automatic links favicon fetching and additional usability and personalization features.
 
