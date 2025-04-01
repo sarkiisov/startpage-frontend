@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# Startpage Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A customizable Chrome startpage extension with automatic links favicon fetching and additional usability and personalization features.
 
-Currently, two official plugins are available:
+![startpage-preview](./docs/preview.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **🔗 Link Previews** – Displays favicons (requires [startpage-backend](https://github.com/sarkiisov/startpage-backend)).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **📌 Drag & Drop Links** – Easily organize your links.
 
-- Configure the top-level `parserOptions` property like this:
+- **🖼️ Custom Background** – Personalize with your own image.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **📐 Adjustable Grid Layout** – Modify link column count.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **🎨 Auto Contrast Labels** – Ensures readability on any background.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Installation & usage
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Install pnpm (package manager)
+
+   https://pnpm.io/installation
+
+2. Build static assets for Chrome Extension
+
+   ```sh
+   pnpm install
+   pnpm build
+   ```
+
+3. Load the Extension in Chrome
+
+   1. Open **Chrome** and navigate to `chrome://extensions/`
+   2. Enable **Developer mode** (top-right corner)
+   3. Click **Load unpacked** and select the `dist` folder
+
+4. (Optional) Run [startpage-backend](https://github.com/sarkiisov/startpage-backend)
+
+   1. For favicon previews, start the backend service.
+   2. Put backend service URL in startpage settings.
+
+## Stack
+
+Vite, React, TypeScript, Tailwind v4, Dnd-kit, React hook form, Zod
