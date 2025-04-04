@@ -1,8 +1,11 @@
-import { useController, useFormContext } from 'react-hook-form'
-import { ColorInputProps } from './ColorInput.types'
 import { useId } from 'react'
-import { InputWrapper } from '../InputWrapper'
+import { useController, useFormContext } from 'react-hook-form'
+
 import { cn } from '@/utils'
+
+import { ColorInputProps } from './ColorInput.types'
+import { InputWrapper } from '../InputWrapper'
+
 
 export const ColorInput = ({
   label,

@@ -8,8 +8,10 @@ import {
   useTransitionStyles
 } from '@floating-ui/react'
 import { useId } from 'react'
-import { ModalProps } from './Modal.types'
+
 import X from '@/assets/icons/X.svg?react'
+
+import { ModalProps } from './Modal.types'
 
 export const Modal = ({ open, onOpenChange, title, children }: ModalProps) => {
   const { refs, context } = useFloating({ open, onOpenChange })

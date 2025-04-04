@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+
 import { getFavicons } from './LinkForm.utils'
 
 export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolean }) => {

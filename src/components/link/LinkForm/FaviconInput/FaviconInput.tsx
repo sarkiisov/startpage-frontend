@@ -1,9 +1,12 @@
-import { useController, useFormContext } from 'react-hook-form'
-import { LinkFormData } from '../LinkForm.types'
-import { useFindManyFavicons } from '../LinkForm.hooks'
 import { useId } from 'react'
-import { FaviconInputOptionProps } from './FaviconInput.types'
+import { useController, useFormContext } from 'react-hook-form'
+
 import { InputWrapper } from '@/components/inputs'
+
+import { useFindManyFavicons } from '../LinkForm.hooks'
+import { LinkFormData } from '../LinkForm.types'
+import { FaviconInputOptionProps } from './FaviconInput.types'
+
 
 const FaviconInputOption = ({ faviconSrc }: FaviconInputOptionProps) => {
   const id = useId()

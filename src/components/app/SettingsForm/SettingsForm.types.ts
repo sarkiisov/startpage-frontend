@@ -1,6 +1,7 @@
-import { z } from 'zod'
-import { SettingsFormSchema } from './SettingsForm.schema'
 import { DefaultValues, SubmitHandler } from 'react-hook-form'
+import { z } from 'zod'
+
+import { SettingsFormSchema } from './SettingsForm.schema'
 
 export type SettingsFormData = z.infer<typeof SettingsFormSchema>
 

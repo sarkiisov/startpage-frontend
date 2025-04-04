@@ -1,8 +1,11 @@
-import { useController, useFormContext } from 'react-hook-form'
-import { InputWrapper } from '../InputWrapper'
 import { useId } from 'react'
-import { CheckboxProps } from './Checkbox.types'
+import { useController, useFormContext } from 'react-hook-form'
+
 import { cn } from '@/utils'
+
+import { InputWrapper } from '../InputWrapper'
+import { CheckboxProps } from './Checkbox.types'
+
 
 export const Checkbox = ({
   label,

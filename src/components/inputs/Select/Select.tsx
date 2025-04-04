@@ -1,8 +1,11 @@
 import { useId, useMemo } from 'react'
-import { SelectObjectOption, SelectProps } from './Select.types'
 import { useController, useFormContext } from 'react-hook-form'
-import { InputWrapper } from '../InputWrapper'
+
 import { cn } from '@/utils'
+
+import { SelectObjectOption, SelectProps } from './Select.types'
+import { InputWrapper } from '../InputWrapper'
+
 
 export const Select = ({
   label,

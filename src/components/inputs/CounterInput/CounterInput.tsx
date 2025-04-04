@@ -1,8 +1,10 @@
 import { useId } from 'react'
 import { useController, useFormContext } from 'react-hook-form'
+
+import { cn } from '@/utils'
+
 import { CounterInputProps } from './CounterInput.types'
 import { InputWrapper } from '../InputWrapper'
-import { cn } from '@/utils'
 
 const CounterInputButton = ({
   className,

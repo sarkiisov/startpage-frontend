@@ -1,9 +1,12 @@
+import { filesize } from 'filesize'
+import { useId } from 'react'
 import { useController, useFormContext } from 'react-hook-form'
+
+import { cn, downloadFile } from '@/utils'
+
 import { InputWrapper } from '../InputWrapper'
 import { FileInputProps } from './FileInput.types'
-import { useId } from 'react'
-import { filesize } from 'filesize'
-import { cn, downloadFile } from '@/utils'
+
 
 export const FileInput = ({
   label,
@@ -19,7 +22,7 @@ export const FileInput = ({
   const id = useId()
 
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
     field: { value, onChange, ...field },
     fieldState: { error }
   } = useController({ name, control, shouldUnregister, defaultValue: null })

@@ -1,11 +1,13 @@
-import { useModalContext } from '@/components/modals'
-import { createSafeContext, dataURItoFile, fileToDataURI } from '@/utils'
-import { SettingsForm, SettingsFormData } from '../SettingsForm'
 import { useCallback } from 'react'
-import { SettingsContext } from './SettingsProvider.types'
-import { defaultSettings } from './SettingsProvider.consts'
-import { useLocalStorage } from '@/hooks'
 import { DefaultValues } from 'react-hook-form'
+
+import { useModalContext } from '@/components/modals'
+import { useLocalStorage } from '@/hooks'
+import { createSafeContext, dataURItoFile, fileToDataURI } from '@/utils'
+
+import { SettingsForm, SettingsFormData } from '../SettingsForm'
+import { defaultSettings } from './SettingsProvider.consts'
+import { SettingsContext } from './SettingsProvider.types'
 import { getSettings, setBackground } from './SettingsProvider.utils'
 
 const [SettingsContextProvider, useSettingsContext] = createSafeContext<SettingsContext>(

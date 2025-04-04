@@ -1,4 +1,3 @@
-import { useState, MouseEvent, cloneElement, ReactElement, HTMLAttributes } from 'react'
 import {
   autoPlacement,
   FloatingPortal,
@@ -7,13 +6,17 @@ import {
   useFloating,
   useInteractions
 } from '@floating-ui/react'
+import { useState, MouseEvent, cloneElement, ReactElement, HTMLAttributes } from 'react'
+
+import { createSafeContext } from '@/utils'
+
 import {
   ContextMenuContentProps,
   ContextMenuContext,
   ContextMenuItemProps,
   ContextMenuProps
 } from './ContextMenu.types'
-import { createSafeContext } from '@/utils'
+
 
 const [ContextMenuContextProvider, useContextMenuContext] = createSafeContext<ContextMenuContext>(
   'ContextMenu component was not found in the tree'

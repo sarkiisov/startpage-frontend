@@ -1,9 +1,12 @@
-import { FormProvider, useForm, useFormContext } from 'react-hook-form'
-import { SettingsFormData, SettingsFormProps } from './SettingsForm.types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SettingsFormSchema } from './SettingsForm.schema'
-import { Button } from '@/components/ui'
+import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+
 import { CounterInput, FileInput, TextInput } from '@/components/inputs'
+import { Button } from '@/components/ui'
+
+import { SettingsFormSchema } from './SettingsForm.schema'
+import { SettingsFormData, SettingsFormProps } from './SettingsForm.types'
+
 
 export const SettingsForm = ({ defaultValues, onSubmit, children }: SettingsFormProps) => {
   const form = useForm<SettingsFormData>({

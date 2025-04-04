@@ -1,10 +1,10 @@
-import { ContextMenu, Link, useLinkContext, useSettingsContext } from './components'
-import { SortabelGrid } from './components/dnd/SortableGrid'
-
-import Plus from '@/assets/icons/Plus.svg?react'
 import Gear from '@/assets/icons/Gear.svg?react'
+import Plus from '@/assets/icons/Plus.svg?react'
 
-function App() {
+import { ContextMenu, Link, useLinkContext, useSettingsContext } from './components'
+import { SortableGrid } from './components/dnd/SortableGrid'
+
+export const App = () => {
   const { links, setLinks, requestAddLink, requestEditLink, requestDeleteLink } = useLinkContext()
   const {
     settings: { columns },
@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <div className="flex h-screen items-center justify-center">
-        <SortabelGrid
+        <SortableGrid
           columns={columns}
           items={links}
           onChange={(items) => setLinks(items)}
@@ -48,5 +48,3 @@ function App() {
     </>
   )
 }
-
-export default App

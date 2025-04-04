@@ -1,6 +1,7 @@
+import invariant from 'tiny-invariant'
+
 import { getSettings } from '@/components/app'
 import { fileToDataURI } from '@/utils'
-import invariant from 'tiny-invariant'
 
 const isValidHTTPUrl = (str: string) => {
   let url

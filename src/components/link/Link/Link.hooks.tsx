@@ -1,5 +1,5 @@
-import { cn, getColorVariant, hexToRgb } from '@/utils'
 import { Link } from '@/types'
+import { cn, getColorVariant, hexToRgb } from '@/utils'
 
 export const useLinkIconComponent = ({ icon, title }: Pick<Link, 'title' | 'icon'>) => {
   if (icon.type === 'FAVICON') {

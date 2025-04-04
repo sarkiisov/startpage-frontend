@@ -1,12 +1,13 @@
-import { TextInput } from '../../inputs'
-import { FormProvider, useForm, useFormContext } from 'react-hook-form'
-import { LinkFormData, LinkFormProps } from './LinkForm.types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { LinkFormSchema } from './LinkForm.schema'
+import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+
 import { FaviconInput } from './FaviconInput'
-import { Select, SelectOption } from '../../inputs/Select'
-import { PlaceholderInput } from './PlaceholderInput'
 import { fallbackDefaultValues } from './LinkForm.consts'
+import { LinkFormSchema } from './LinkForm.schema'
+import { LinkFormData, LinkFormProps } from './LinkForm.types'
+import { PlaceholderInput } from './PlaceholderInput'
+import { TextInput } from '../../inputs'
+import { Select, SelectOption } from '../../inputs/Select'
 import { Button } from '../../ui/Button'
 
 export const LinkForm = ({ defaultValues, onSubmit, children }: LinkFormProps) => {

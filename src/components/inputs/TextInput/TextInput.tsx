@@ -1,8 +1,10 @@
+import { useId } from 'react'
 import { useController, useFormContext } from 'react-hook-form'
+
+import { cn } from '@/utils'
+
 import { TextInputProps } from './TextInput.types'
 import { InputWrapper } from '../InputWrapper'
-import { useId } from 'react'
-import { cn } from '@/utils'
 
 export const TextInput = ({
   label,

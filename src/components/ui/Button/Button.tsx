@@ -1,4 +1,5 @@
 import { cn } from '@/utils'
+
 import { ButtonProps } from './Button.types'
 
 export const Button = ({ variant = 'primary', className, children, ...props }: ButtonProps) => {

@@ -1,5 +1,6 @@
-import { getFromLocalStorage, setToLocalStorage } from '@/utils'
 import { useState } from 'react'
+
+import { getFromLocalStorage, setToLocalStorage } from '@/utils'
 
 export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => getFromLocalStorage(key, initialValue))

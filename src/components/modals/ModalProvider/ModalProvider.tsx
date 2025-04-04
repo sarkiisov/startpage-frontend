@@ -1,7 +1,9 @@
+import { useCallback, useState } from 'react'
+
 import { createSafeContext } from '@/utils'
+
 import { Modal } from '../Modal'
 import { ModalContext, ModalPayload } from './ModalProvider.types'
-import { useCallback, useState } from 'react'
 
 const [ModalContextProvider, useModalContext] = createSafeContext<ModalContext>(
   'ModalProvider component was not found in the tree'

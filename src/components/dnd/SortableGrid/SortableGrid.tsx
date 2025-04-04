@@ -11,14 +11,16 @@ import {
   useSensors
 } from '@dnd-kit/core'
 import { arrayMove, rectSortingStrategy, SortableContext } from '@dnd-kit/sortable'
-import { SortableGridProps, SortableItem as SortableItemType } from './SortableGrid.types'
 import { Fragment, useCallback, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { SortableOverlay } from './SortableOverlay'
-import { SortableItem } from './SortableItem'
+
 import { cn } from '@/utils'
 
-export const SortabelGrid = <T extends SortableItemType>({
+import { SortableGridProps, SortableItem as SortableItemType } from './SortableGrid.types'
+import { SortableItem } from './SortableItem'
+import { SortableOverlay } from './SortableOverlay'
+
+export const SortableGrid = <T extends SortableItemType>({
   columns,
   items,
   renderItem,

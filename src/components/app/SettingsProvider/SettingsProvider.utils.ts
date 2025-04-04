@@ -1,6 +1,7 @@
-import { fileToDataURI, getFromLocalStorage } from '@/utils'
-import { defaultSettings } from './SettingsProvider.consts'
 import { Settings } from '@/types'
+import { fileToDataURI, getFromLocalStorage } from '@/utils'
+
+import { defaultSettings } from './SettingsProvider.consts'
 
 export const getSettings = (): Settings => {
   return getFromLocalStorage('settings', defaultSettings)
