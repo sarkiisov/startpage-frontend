@@ -1,6 +1,6 @@
 # Startpage frontend
 
-A customizable Chrome startpage extension with automatic links favicon fetching and additional usability and personalization features.
+A customizable Chrome and Firefox startpage extension with automatic links favicon fetching and additional usability and personalization features.
 
 ![startpage-preview](./docs/preview.png)
 
@@ -29,16 +29,29 @@ A customizable Chrome startpage extension with automatic links favicon fetching 
    pnpm build
    ```
 
+### For Chrome
+
 3. Load the Extension in Chrome
 
    1. Open **Chrome** and navigate to `chrome://extensions/`
    2. Enable **Developer mode** (top-right corner)
    3. Click **Load unpacked** and select the `dist` folder
 
-4. (Optional) Run [startpage-backend](https://github.com/sarkiisov/startpage-backend)
+### For Firefox
 
-   1. For favicon previews, start the backend service.
-   2. Put backend service URL in startpage settings.
+3. Load the Extension in Chrome
+
+   1. Open **Firefox** and navigate to `about:debugging`
+   2. Click **This Firefox**
+   3. Click **Load Temporary Add-on**
+   4. Select any file from the `dist` folder
+
+### Optional
+
+4.  Run [startpage-backend](https://github.com/sarkiisov/startpage-backend)
+
+    1.  For favicon previews, start the backend service.
+    2.  Put backend service URL in startpage settings.
 
 ## Stack
 
