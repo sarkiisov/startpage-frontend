@@ -9,9 +9,17 @@ input::-webkit-color-swatch {
   @apply rounded-sm border-none;
 }
 
+input::-moz-color-swatch {
+  @apply rounded-sm border-none;
+}
+
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   @apply appearance-none;
+}
+
+input[type='number'] {
+  appearance: textfield;
 }
 
 select option {
