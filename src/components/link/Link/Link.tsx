@@ -7,7 +7,7 @@ export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
   const iconComponent = useLinkIconComponent({ icon, title })
 
   return (
-    <div className={cn('relative cursor-pointer', className)} {...props}>
+    <div data-testid="link-wrapper" className={cn('relative cursor-pointer', className)} {...props}>
       <a className="absolute inset-0 content-none" href={href} />
       <div className="px-2 pt-2">
         <div className="flex aspect-square w-full justify-center overflow-hidden rounded-md shadow-sm">
