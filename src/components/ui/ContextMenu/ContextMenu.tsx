@@ -17,7 +17,6 @@ import {
   ContextMenuProps
 } from './ContextMenu.types'
 
-
 const [ContextMenuContextProvider, useContextMenuContext] = createSafeContext<ContextMenuContext>(
   'ContextMenu component was not found in the tree'
 )
@@ -71,7 +70,7 @@ export const ContextMenuTrigger = ({ children }: ContextMenuProps) => {
   })
 }
 
-export const CotextMenuContent = ({ children }: ContextMenuContentProps) => {
+export const ContextMenuContent = ({ children }: ContextMenuContentProps) => {
   const { isOpen, refs, floatingStyles, position, getFloatingProps } = useContextMenuContext()
 
   if (!isOpen) return null
@@ -113,5 +112,5 @@ export const ContextMenuItem = ({ children, onClick }: ContextMenuItemProps) => 
 }
 
 ContextMenu.Trigger = ContextMenuTrigger
-ContextMenu.Content = CotextMenuContent
+ContextMenu.Content = ContextMenuContent
 ContextMenu.Item = ContextMenuItem
