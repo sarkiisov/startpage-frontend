@@ -1,5 +1,7 @@
 # Startpage frontend
 
+![Frontend CI Pipeline](https://github.com/sarkiisov/startpage-frontend/actions/workflows/ci.yml/badge.svg?branch=main)
+
 A customizable Chrome and Firefox startpage extension with automatic links favicon fetching and additional usability and personalization features.
 
 ![startpage-preview](./docs/preview.png)
