@@ -1,3 +1,8 @@
+export type FaviconFileUploaderProps = {
+  onUpload?: (file: File) => void
+}
+
 export type FaviconInputOptionProps = {
-  faviconSrc: string
+  src?: string
+  isLoading?: boolean
 }

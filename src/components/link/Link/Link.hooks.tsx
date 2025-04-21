@@ -3,7 +3,7 @@ import { cn, getColorVariant, hexToRgb } from '@/utils'
 
 export const useLinkIconComponent = ({ icon, title }: Pick<Link, 'title' | 'icon'>) => {
   if (icon.type === 'FAVICON') {
-    return <img src={icon.src} />
+    return <img className="h-full w-full" src={icon.src} />
   }
   if (icon.type === 'PLACEHOLDER') {
     const rgbColor = hexToRgb(icon.color)
