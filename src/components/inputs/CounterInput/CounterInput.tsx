@@ -17,7 +17,7 @@ const CounterInputButton = ({
       className={cn(
         'cursor-pointer rounded border px-4 py-1 transition-colors focus:ring focus:outline-0',
         'border-neutral-300 bg-neutral-50 text-black hover:bg-neutral-200 focus:ring-neutral-500',
-        'dark:border-neutral-800 dark:bg-neutral-950/40 dark:hover:bg-neutral-800 dark:focus:ring-neutral-300',
+        'dark:border-neutral-800 dark:bg-neutral-950/40 dark:text-white dark:hover:bg-neutral-800 dark:focus:ring-neutral-300',
         className
       )}
       {...props}
