@@ -5,4 +5,5 @@ export type Settings = {
     filename: string
     dataURI: string
   } | null
+  darkMode: boolean
 }

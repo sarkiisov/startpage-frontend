@@ -3,6 +3,7 @@ import { useController, useFormContext } from 'react-hook-form'
 
 import Upload from '@/assets/icons/Upload.svg?react'
 import { InputWrapper } from '@/components/inputs'
+import { cn } from '@/utils'
 
 import { useFindManyFavicons } from '../LinkForm.hooks'
 import { LinkFormData } from '../LinkForm.types'
@@ -24,7 +25,11 @@ const FaviconFileUploader = ({ onUpload }: FaviconFileUploaderProps) => {
   return (
     <div className="h-14 w-14">
       <div
-        className="block h-full w-full cursor-pointer overflow-hidden rounded-lg bg-neutral-800"
+        className={cn(
+          'block h-full w-full cursor-pointer overflow-hidden rounded-lg',
+          'bg-neutral-200',
+          'dark:bg-neutral-800'
+        )}
         onClick={triggerInput}
       >
         <input
@@ -35,7 +40,13 @@ const FaviconFileUploader = ({ onUpload }: FaviconFileUploaderProps) => {
           onChange={handleImageChange}
           ref={inputRef}
         />
-        <div className="flex h-full w-full items-center justify-center text-xl text-white transition-colors hover:text-neutral-300">
+        <div
+          className={cn(
+            'flex h-full w-full items-center justify-center text-xl transition-colors',
+            'text-neutral-500 hover:text-neutral-600',
+            'dark:text-white dark:hover:text-neutral-300'
+          )}
+        >
           <Upload />
         </div>
       </div>
@@ -66,7 +77,11 @@ const FaviconInputOption = ({ src, isLoading }: FaviconInputOptionProps) => {
         {...fieldProps}
       />
       <label
-        className="overflow-hidden rounded-lg outline-2 outline-offset-2 outline-transparent transition-colors peer-checked:outline-white"
+        className={cn(
+          'overflow-hidden rounded-lg outline-2 outline-offset-2 outline-transparent transition-colors',
+          'peer-checked:outline-neutral-500',
+          'dark:peer-checked:outline-white'
+        )}
         htmlFor={id}
       >
         <img className="h-14 w-14" src={src} />
@@ -76,7 +91,9 @@ const FaviconInputOption = ({ src, isLoading }: FaviconInputOptionProps) => {
 }
 
 FaviconInputOption.Skeleton = () => {
-  return <div className="h-14 w-14 animate-pulse rounded-lg bg-white/20" />
+  return (
+    <div className={cn('h-14 w-14 animate-pulse rounded-lg', 'bg-black/20', 'dark:bg-white/20')} />
+  )
 }
 
 export const FaviconInput = () => {

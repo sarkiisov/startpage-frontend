@@ -8,7 +8,7 @@ import {
 } from '@floating-ui/react'
 import { useState, MouseEvent, cloneElement, ReactElement, HTMLAttributes } from 'react'
 
-import { createSafeContext } from '@/utils'
+import { cn, createSafeContext } from '@/utils'
 
 import {
   ContextMenuContentProps,
@@ -80,7 +80,11 @@ export const ContextMenuContent = ({ children }: ContextMenuContentProps) => {
       <div
         ref={refs.setFloating}
         {...getFloatingProps()}
-        className="min-w-28 overflow-hidden rounded-md border border-neutral-700 bg-neutral-900 p-1 shadow-2xl"
+        className={cn(
+          'min-w-28 overflow-hidden rounded-md border p-1 shadow-2xl',
+          'border-neutral-200 bg-neutral-50',
+          'dark:border-neutral-700 dark:bg-neutral-900'
+        )}
         style={{
           ...floatingStyles,
           top: position.y,
@@ -104,7 +108,11 @@ export const ContextMenuItem = ({ children, onClick }: ContextMenuItemProps) => 
   return (
     <div
       onClick={handleItemClick}
-      className="cursor-pointer rounded px-2 py-1 text-left text-sm font-medium text-white hover:bg-neutral-800"
+      className={cn(
+        'cursor-pointer rounded px-2 py-1 text-left text-sm font-medium',
+        'text-black hover:bg-neutral-300',
+        'dark:text-white dark:hover:bg-neutral-800'
+      )}
     >
       {children}
     </div>

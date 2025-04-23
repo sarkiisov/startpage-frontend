@@ -85,7 +85,7 @@ const LinkProvider = ({ children }: React.PropsWithChildren) => {
         title: 'Do you want to remove link?',
         children: (
           <div className="flex flex-col gap-4">
-            <div className="text-white">{link.title}</div>
+            <div className="text-black dark:text-white">{link.title}</div>
             <div className="ml-auto flex gap-4">
               <Button variant="secondary" onClick={closeModal}>
                 Dismiss

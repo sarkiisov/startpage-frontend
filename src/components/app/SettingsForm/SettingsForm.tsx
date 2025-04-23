@@ -1,12 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 
-import { CounterInput, FileInput, TextInput } from '@/components/inputs'
+import { Checkbox, CounterInput, FileInput, TextInput } from '@/components/inputs'
 import { Button } from '@/components/ui'
 
 import { SettingsFormSchema } from './SettingsForm.schema'
 import { SettingsFormData, SettingsFormProps } from './SettingsForm.types'
-
 
 export const SettingsForm = ({ defaultValues, onSubmit, children }: SettingsFormProps) => {
   const form = useForm<SettingsFormData>({
@@ -27,6 +26,7 @@ const SettingsFormBody = () => {
       <CounterInput name="columns" label="Columns" />
       <TextInput name="backendUrl" label="Backend URL" />
       <FileInput name="background" label="Background" />
+      <Checkbox name="darkMode" label="Dark mode" />
     </div>
   )
 }

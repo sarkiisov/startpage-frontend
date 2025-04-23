@@ -6,7 +6,6 @@ import { cn } from '@/utils'
 import { SelectObjectOption, SelectProps } from './Select.types'
 import { InputWrapper } from '../InputWrapper'
 
-
 export const Select = ({
   label,
   withAsterisk,
@@ -39,7 +38,9 @@ export const Select = ({
         {...field}
         {...props}
         className={cn(
-          'block w-full appearance-none rounded-lg border border-neutral-800 bg-neutral-950/40 p-2 pe-9 text-white outline-0 focus:ring-neutral-300 focus:outline-0',
+          'block w-full appearance-none rounded-lg border p-2 pe-9 outline-0 focus:outline-0',
+          'border-neutral-300 bg-neutral-50 text-black focus:ring-neutral-500',
+          'dark:border-neutral-800 dark:bg-neutral-950/40 dark:text-white dark:focus:ring-neutral-300',
           className
         )}
         id={id}

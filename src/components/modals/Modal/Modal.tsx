@@ -10,6 +10,7 @@ import {
 import { useId } from 'react'
 
 import X from '@/assets/icons/X.svg?react'
+import { cn } from '@/utils'
 
 import { ModalProps } from './Modal.types'
 
@@ -32,23 +33,34 @@ export const Modal = ({ open, onOpenChange, title, children }: ModalProps) => {
   return (
     <FloatingPortal>
       {isMounted && (
-        <FloatingOverlay className="grid place-items-center bg-black/0" lockScroll style={styles}>
+        <FloatingOverlay className="grid place-items-center" lockScroll style={styles}>
           <FloatingFocusManager context={context}>
             <div
-              className="w-md rounded-md border border-neutral-800 bg-neutral-900 p-4 shadow-black/30"
+              className={cn(
+                'w-md rounded-md border p-4',
+                'border-neutral-200 bg-neutral-50 shadow-black/10',
+                'dark:border-neutral-800 dark:bg-neutral-900 dark:shadow-black/30'
+              )}
               style={{ boxShadow: '0px 8px 16px 2px var(--tw-shadow-color)' }}
               ref={refs.setFloating}
               aria-labelledby={headingId}
               {...getFloatingProps()}
             >
               <div className="mb-4 flex justify-between">
-                <h2 id={headingId} className="font-medium text-white">
+                <h2
+                  id={headingId}
+                  className={cn('font-medium', 'text-neutral-950', 'dark:text-white')}
+                >
                   {title}
                 </h2>
                 <button
                   tabIndex={-1}
                   onClick={() => onOpenChange?.(false)}
-                  className="cursor-pointer text-neutral-500 transition-colors hover:text-neutral-300"
+                  className={cn(
+                    'cursor-pointer transition-colors',
+                    'text-neutral-400 hover:text-neutral-500',
+                    'dark:text-neutral-600 dark:hover:text-neutral-300'
+                  )}
                 >
                   <X className="h-4 w-4" />
                 </button>

@@ -8,7 +8,7 @@ import { createSafeContext, dataURItoFile, fileToDataURI } from '@/utils'
 import { SettingsForm, SettingsFormData } from '../SettingsForm'
 import { defaultSettings } from './SettingsProvider.consts'
 import { SettingsContext } from './SettingsProvider.types'
-import { getSettings, setBackground } from './SettingsProvider.utils'
+import { getSettings, setBackground, setColorMode } from './SettingsProvider.utils'
 
 const [SettingsContextProvider, useSettingsContext] = createSafeContext<SettingsContext>(
   'SettingsProvider was not found in the tree'
@@ -20,6 +20,8 @@ if (settings.background) {
   const { dataURI, filename } = settings.background
   setBackground(dataURItoFile(dataURI, filename))
 }
+
+setColorMode(settings.darkMode ?? defaultSettings.darkMode)
 
 const SettingsProvider = ({ children }: React.PropsWithChildren) => {
   const [settings, setSettings] = useLocalStorage('settings', defaultSettings)
@@ -45,7 +47,11 @@ const SettingsProvider = ({ children }: React.PropsWithChildren) => {
             }
           : null
       })
-      setBackground(nextSettings.background)
+
+      if (nextSettings.background) {
+        setBackground(nextSettings.background)
+      }
+      setColorMode(nextSettings.darkMode)
 
       closeModal()
     },

@@ -11,3 +11,7 @@ export const setBackground = async (file?: File | null) => {
   const backgroundUrl = file ? await fileToDataURI(file) : ''
   document.body.style.backgroundImage = `url(${backgroundUrl})`
 }
+
+export const setColorMode = (isDark: boolean) => {
+  document.body.classList[isDark ? 'add' : 'remove']('dark')
+}

@@ -14,7 +14,13 @@ export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
           {iconComponent}
         </div>
       </div>
-      <div className="mt-2 line-clamp-1 inline-block w-full text-center text-xs font-medium text-ellipsis whitespace-nowrap text-white">
+      <div
+        className={cn(
+          'mt-2 line-clamp-1 inline-block w-full text-center text-xs font-medium text-ellipsis whitespace-nowrap',
+          'text-black',
+          'dark:text-white'
+        )}
+      >
         {title}
       </div>
     </div>

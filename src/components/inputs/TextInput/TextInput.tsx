@@ -30,7 +30,9 @@ export const TextInput = ({
         {...field}
         {...props}
         className={cn(
-          'block w-full rounded-lg border border-neutral-800 bg-neutral-950/40 p-2 text-white transition-colors focus:ring-neutral-300 focus:outline-0',
+          'block w-full rounded-lg border p-2 text-white transition-colors focus:outline-0',
+          'border-neutral-300 bg-neutral-50 text-black focus:ring-neutral-500',
+          'dark:border-neutral-800 dark:bg-neutral-950/40 dark:text-white dark:focus:ring-neutral-300',
           className
         )}
         readOnly={formState.isSubmitting || readOnly}
