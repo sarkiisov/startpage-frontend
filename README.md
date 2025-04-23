@@ -18,6 +18,8 @@ A customizable Chrome and Firefox startpage extension with automatic links favic
 
 - **🎨 Auto Contrast Labels** – Ensures readability on any background.
 
+- **🌗 Light & Dark Mode Switching** – Seamlessly toggle between light and dark themes
+
 ## Installation & usage
 
 1. Install pnpm (package manager)
