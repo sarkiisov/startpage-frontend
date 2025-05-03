@@ -47,10 +47,7 @@ const SettingsProvider = ({ children }: React.PropsWithChildren) => {
             }
           : null
       })
-
-      if (nextSettings.background) {
-        setBackground(nextSettings.background)
-      }
+      setBackground(nextSettings.background)
       setColorMode(nextSettings.darkMode)
 
       closeModal()
