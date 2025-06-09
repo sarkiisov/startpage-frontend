@@ -1,9 +1,14 @@
 import { Link } from '@/types'
 import { cn, getColorVariant, hexToRgb } from '@/utils'
 
-export const useLinkIconComponent = ({ icon, title }: Pick<Link, 'title' | 'icon'>) => {
+import { useFavicon } from '../../../hooks'
+
+export const useLinkIconComponent = ({ icon, title, href }: Pick<Link, 'title' | 'icon' | 'href'>) => {
+  const { faviconUrl } = useFavicon(href)
+
   if (icon.type === 'FAVICON') {
-    return <img className="h-full w-full" src={icon.src} />
+    // use cached favicon URL
+    return <img className="h-full w-full" src={faviconUrl} alt={`${title} favicon`} />
   }
   if (icon.type === 'PLACEHOLDER') {
     const rgbColor = hexToRgb(icon.color)

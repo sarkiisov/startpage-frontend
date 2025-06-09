@@ -26,12 +26,11 @@ export const LinkForm = ({ defaultValues, onSubmit, children }: LinkFormProps) =
 const LinkFormBody = () => {
   const { watch, setValue } = useFormContext<LinkFormData>()
 
-  const href = watch('href')
   const iconType = watch('icon.type')
 
   const iconTypeOptions: SelectOption[] = [
     { value: 'PLACEHOLDER', label: 'Placeholder' },
-    { value: 'FAVICON', label: 'Favicon', disabled: !href }
+    { value: 'FAVICON', label: 'Favicon' }
   ]
 
   return (

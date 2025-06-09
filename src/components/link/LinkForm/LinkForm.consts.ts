@@ -5,5 +5,5 @@ import { LinkFormData } from './LinkForm.types'
 export const fallbackDefaultValues: DefaultValues<LinkFormData> = {
   title: '',
   href: '',
-  icon: { type: 'PLACEHOLDER' }
+  icon: { type: 'FAVICON' }
 }

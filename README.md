@@ -8,7 +8,7 @@ A customizable Chrome and Firefox startpage extension with automatic links favic
 
 ## Features
 
-- **🔗 Link Previews** – Displays favicons (requires [startpage-backend](https://github.com/sarkiisov/startpage-backend)).
+- **🔗 Link Previews** – Displays favicons.
 
 - **📌 Drag & Drop Links** – Easily organize your links.
 
@@ -26,7 +26,7 @@ A customizable Chrome and Firefox startpage extension with automatic links favic
 
    https://pnpm.io/installation
 
-2. Build static assets for Chrome Extension
+2. Build static assets
 
    ```sh
    pnpm install
@@ -43,19 +43,13 @@ A customizable Chrome and Firefox startpage extension with automatic links favic
 
 ### For Firefox
 
-3. Load the Extension in Chrome
+3. Load the Extension in Firefox
 
    1. Open **Firefox** and navigate to `about:debugging`
    2. Click **This Firefox**
    3. Click **Load Temporary Add-on**
    4. Select any file from the `dist` folder
 
-### Optional
-
-4.  Run [startpage-backend](https://github.com/sarkiisov/startpage-backend)
-
-    1.  For favicon previews, start the backend service.
-    2.  Put backend service URL in startpage settings.
 
 ## Stack
 

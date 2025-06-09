@@ -1,36 +1,37 @@
-import invariant from 'tiny-invariant'
+import { getFaviconUrlWithCache } from '../../../utils/favicon'
 
-import { getSettings } from '@/components/app'
-import { fileToDataURI } from '@/utils'
-
-const isValidHTTPUrl = (str: string) => {
-  let url
-
-  try {
-    url = new URL(str)
-  } catch {
-    return false
+export const normalizeUrl = (url: string): string => {
+  const trimmedUrl = url.trim()
+  
+  // If URL is empty, return as-is
+  if (!trimmedUrl) {
+    return trimmedUrl
   }
-
-  return url.protocol === 'http:' || url.protocol === 'https:'
+  
+  // If URL already has a protocol, return as-is
+  if (trimmedUrl.includes('://')) {
+    return trimmedUrl
+  }
+  
+  // Add https:// prefix for URLs without protocol
+  return `https://${trimmedUrl}`
 }
 
 export const getFavicons = async (url: string): Promise<string[]> => {
-  invariant(isValidHTTPUrl(url), 'URL is not valid')
+  // Return empty array if URL is empty or invalid
+  if (!url || !url.trim()) {
+    return []
+  }
 
-  const { backendUrl } = getSettings()
-
-  const iconIds = (await fetch(`${backendUrl}/favicons?url=${url}`).then((response) =>
-    response.json()
-  )) as number[]
-
-  const iconURLs = await Promise.all(
-    iconIds.map((iconId) =>
-      fetch(`${backendUrl}/files/${iconId}`)
-        .then((response) => response.blob())
-        .then((blob) => fileToDataURI(blob))
-    )
-  )
-
-  return iconURLs
+  try {
+    // ensure URL has protocol for parsing
+    const normalizedUrl = normalizeUrl(url)
+    
+    // Use the new caching favicon function
+    const faviconUrl = await getFaviconUrlWithCache(normalizedUrl)
+    
+    return [faviconUrl]
+  } catch {
+    return []
+  }
 }

@@ -4,7 +4,7 @@ import { useLinkIconComponent } from './Link.hooks'
 import { LinkProps } from './Link.types'
 
 export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
-  const iconComponent = useLinkIconComponent({ icon, title })
+  const iconComponent = useLinkIconComponent({ icon, title, href })
 
   return (
     <div data-testid="link-wrapper" className={cn('relative cursor-pointer', className)} {...props}>
