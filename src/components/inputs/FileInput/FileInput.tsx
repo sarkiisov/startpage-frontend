@@ -62,7 +62,7 @@ export const FileInput = ({
           {...field}
           {...props}
           className={cn(
-            'block w-full rounded-lg border text-white outline-0 file:mr-2 file:border-0 file:p-2 focus:ring',
+            'block w-full rounded-lg border text-white outline-0 file:mr-2 file:border-0 file:p-1.5 focus:ring',
             'border-neutral-300 bg-neutral-50 text-black file:bg-neutral-200 file:text-black focus:ring-neutral-500',
             'dark:border-neutral-800 dark:bg-neutral-950/40 dark:text-white dark:file:bg-neutral-800 dark:file:text-white dark:focus:ring-neutral-300',
             className

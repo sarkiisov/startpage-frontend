@@ -6,7 +6,7 @@ export const Button = ({ variant = 'primary', className, children, ...props }: B
   return (
     <button
       className={cn(
-        'min-w-20 cursor-pointer rounded-md px-4 py-2 transition-colors',
+        'min-w-20 cursor-pointer rounded-md px-2 py-1.5 transition-colors',
         {
           primary: cn(
             'bg-neutral-900 text-white hover:bg-neutral-800',

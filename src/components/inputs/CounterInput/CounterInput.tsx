@@ -62,14 +62,14 @@ export const CounterInput = ({
 
   return (
     <InputWrapper id={id} label={label} withAsterisk={withAsterisk} error={error?.message}>
-      <div className={cn('flex text-white', className)}>
+      <div className={cn('flex items-center text-white', className)}>
         <CounterInputButton onClick={handleDecrementClick}>-</CounterInputButton>
         <input
           {...field}
           {...props}
           type="number"
           className={clsx(
-            'h-fit w-12 border-0 bg-transparent text-center ring-0 focus:outline-0',
+            'w-12 border-0 bg-transparent text-center ring-0 focus:outline-0',
             'text-black',
             'dark:text-white'
           )}
