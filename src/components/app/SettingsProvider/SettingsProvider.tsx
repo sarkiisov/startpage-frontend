@@ -47,6 +47,7 @@ const SettingsProvider = ({ children }: React.PropsWithChildren) => {
             }
           : null
       })
+
       setBackground(nextSettings.background)
       setColorMode(nextSettings.darkMode)
 
