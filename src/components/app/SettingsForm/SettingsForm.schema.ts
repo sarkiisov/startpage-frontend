@@ -7,5 +7,6 @@ export const SettingsFormSchema = z.object({
     .max(10, 'No more than 10 columns required'),
   backendUrl: z.string().url().or(z.literal('')),
   background: z.literal(null).or(z.instanceof(File)),
-  darkMode: z.boolean()
+  darkMode: z.boolean(),
+  monochromeIcons: z.boolean()
 })

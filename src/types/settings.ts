@@ -6,4 +6,5 @@ export type Settings = {
     dataURI: string
   } | null
   darkMode: boolean
+  monochromeIcons: boolean
 }

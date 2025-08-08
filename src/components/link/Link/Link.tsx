@@ -1,3 +1,4 @@
+import { useSettingsContext } from '@/components/app'
 import { cn } from '@/utils'
 
 import { useLinkIconComponent } from './Link.hooks'
@@ -5,12 +6,20 @@ import { LinkProps } from './Link.types'
 
 export const Link = ({ href, icon, title, className, ...props }: LinkProps) => {
   const iconComponent = useLinkIconComponent({ icon, title })
+  const {
+    settings: { monochromeIcons }
+  } = useSettingsContext()
 
   return (
     <div data-testid="link-wrapper" className={cn('relative cursor-pointer', className)} {...props}>
       <a className="absolute inset-0 content-none" href={href} />
       <div className="px-2 pt-2">
-        <div className="flex aspect-square w-full justify-center overflow-hidden rounded-md shadow-sm">
+        <div
+          className={cn(
+            'flex aspect-square w-full justify-center overflow-hidden rounded-md shadow-sm',
+            { 'contrast-200 grayscale-100 invert-10': monochromeIcons }
+          )}
+        >
           {iconComponent}
         </div>
       </div>

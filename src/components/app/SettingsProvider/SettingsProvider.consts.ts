@@ -6,5 +6,6 @@ export const defaultSettings: Settings = {
   columns: 4,
   backendUrl: '',
   background: null,
-  darkMode: true
+  darkMode: true,
+  monochromeIcons: false
 }

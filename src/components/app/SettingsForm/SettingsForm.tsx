@@ -27,6 +27,7 @@ const SettingsFormBody = () => {
       <TextInput name="backendUrl" label="Backend URL" />
       <FileInput name="background" label="Background" />
       <Checkbox name="darkMode" label="Dark mode" />
+      <Checkbox name="monochromeIcons" label="Monochrome icons" />
     </div>
   )
 }
