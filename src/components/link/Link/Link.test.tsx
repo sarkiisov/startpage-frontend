@@ -1,9 +1,20 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 
+import { SettingsProvider } from '@/components/app'
+import { ModalProvider } from '@/components/modals'
 import { LinkIcon } from '@/types'
 
 import { Link as LinkComponent } from './Link'
+import { LinkProps } from './Link.types'
+
+const LinkWithContext = (props: LinkProps) => (
+  <ModalProvider>
+    <SettingsProvider>
+      <LinkComponent {...props} />
+    </SettingsProvider>
+  </ModalProvider>
+)
 
 describe('Link', () => {
   const baseProps = {
@@ -16,7 +27,7 @@ describe('Link', () => {
   const placeholder: LinkIcon = { type: 'PLACEHOLDER', color: '#ff0000' }
 
   it('renders a favicon icon', () => {
-    render(<LinkComponent {...baseProps} icon={favicon} />)
+    render(<LinkWithContext {...baseProps} icon={favicon} />)
 
     const img = screen.getByRole('img')
     expect(img).toBeInTheDocument()
@@ -24,7 +35,7 @@ describe('Link', () => {
   })
 
   it('renders a placeholder icon with correct letter', () => {
-    render(<LinkComponent {...baseProps} icon={placeholder} />)
+    render(<LinkWithContext {...baseProps} icon={placeholder} />)
 
     const letter = screen.getByText('E')
     expect(letter).toBeInTheDocument()
@@ -32,13 +43,13 @@ describe('Link', () => {
   })
 
   it('renders the title text', () => {
-    render(<LinkComponent {...baseProps} icon={favicon} />)
+    render(<LinkWithContext {...baseProps} icon={favicon} />)
 
     expect(screen.getByText('Example')).toBeInTheDocument()
   })
 
   it('applies additional className if provided', () => {
-    render(<LinkComponent {...baseProps} className="custom-class" icon={favicon} />)
+    render(<LinkWithContext {...baseProps} className="custom-class" icon={favicon} />)
 
     const wrapper = screen.getByTestId('link-wrapper')
     expect(wrapper).toHaveClass('custom-class')
