@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 
-import { Checkbox, CounterInput, FileInput, TextInput } from '@/components/inputs'
+import { Checkbox, CounterInput, FileInput } from '@/components/inputs'
 import { Button } from '@/components/ui'
 
 import { SettingsFormSchema } from './SettingsForm.schema'
@@ -24,10 +24,8 @@ const SettingsFormBody = () => {
   return (
     <div className="flex flex-col gap-3">
       <CounterInput name="columns" label="Columns" />
-      <TextInput name="backendUrl" label="Backend URL" />
       <FileInput name="background" label="Background" />
       <Checkbox name="darkMode" label="Dark mode" />
-      <Checkbox name="monochromeIcons" label="Monochrome icons" />
     </div>
   )
 }

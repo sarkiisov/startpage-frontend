@@ -1,7 +1,6 @@
 import invariant from 'tiny-invariant'
 
-import { getSettings } from '@/components/app'
-import { fileToDataURI } from '@/utils'
+import { getFaviconUrls, urlToDataURI } from '@/utils'
 
 const isValidHTTPUrl = (str: string) => {
   let url
@@ -15,22 +14,19 @@ const isValidHTTPUrl = (str: string) => {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 
+const isFulfilled = <T,>(result: PromiseSettledResult<T>): result is PromiseFulfilledResult<T> =>
+  result.status === 'fulfilled'
+
 export const getFavicons = async (url: string): Promise<string[]> => {
   invariant(isValidHTTPUrl(url), 'URL is not valid')
 
-  const { backendUrl } = getSettings()
+  const iconUrls = (await Promise.allSettled(getFaviconUrls(url)))
+    .filter(isFulfilled)
+    .map((result) => result.value)
 
-  const iconIds = (await fetch(`${backendUrl}/favicons?url=${url}`).then((response) =>
-    response.json()
-  )) as number[]
+  const dataURIs = (await Promise.allSettled(iconUrls.map(urlToDataURI)))
+    .filter(isFulfilled)
+    .map((result) => result.value)
 
-  const iconURLs = await Promise.all(
-    iconIds.map((iconId) =>
-      fetch(`${backendUrl}/files/${iconId}`)
-        .then((response) => response.blob())
-        .then((blob) => fileToDataURI(blob))
-    )
-  )
-
-  return iconURLs
+  return dataURIs
 }

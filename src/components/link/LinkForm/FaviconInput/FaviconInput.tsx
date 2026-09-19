@@ -3,6 +3,7 @@ import { useController, useFormContext } from 'react-hook-form'
 
 import Upload from '@/assets/icons/Upload.svg?react'
 import { InputWrapper } from '@/components/inputs'
+import { Button } from '@/components/ui'
 import { cn } from '@/utils'
 
 import { useFindManyFavicons } from '../LinkForm.hooks'
@@ -108,9 +109,10 @@ export const FaviconInput = () => {
 
   const href = watch('href')
 
-  const { data, isLoading, isSuccess, error } = useFindManyFavicons(href, {
-    enabled: Boolean(href)
-  })
+  const { data, isLoading, isSuccess, error, hasPermission, requestPermission } =
+    useFindManyFavicons(href, {
+      enabled: Boolean(href)
+    })
 
   const [uploadedSrc, setUploadedSrc] = useState<string>()
 
@@ -135,7 +137,12 @@ export const FaviconInput = () => {
 
   return (
     <InputWrapper label="Icon" error={fieldError?.message}>
-      <div className="flex flex-wrap gap-2.5 text-white">
+      <div className="flex flex-wrap items-center gap-2.5 text-white">
+        {hasPermission === false && (
+          <Button type="button" variant="secondary" onClick={requestPermission}>
+            Grant site access
+          </Button>
+        )}
         {isLoading &&
           Array(2)
             .fill(null)

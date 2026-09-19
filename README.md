@@ -8,7 +8,7 @@ A customizable Chrome and Firefox startpage extension with automatic links favic
 
 ## Features
 
-- **🔗 Link Previews** – Displays favicons (requires [startpage-backend](https://github.com/sarkiisov/startpage-backend)).
+- **🔗 Link Previews** – Displays favicons, fetched directly from the target site, the App Store, and Google Play.
 
 - **📌 Drag & Drop Links** – Easily organize your links.
 
@@ -50,12 +50,9 @@ A customizable Chrome and Firefox startpage extension with automatic links favic
    3. Click **Load Temporary Add-on**
    4. Select any file from the `dist` folder
 
-### Optional
+### Permissions
 
-4.  Run [startpage-backend](https://github.com/sarkiisov/startpage-backend)
-
-    1.  For favicon previews, start the backend service.
-    2.  Put backend service URL in startpage settings.
+The extension requests access to all sites (`host_permissions: ["<all_urls>"]`) so it can fetch favicons directly from the target site, the App Store, and Google Play, without a backend server.
 
 ## Stack
 

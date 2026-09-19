@@ -11,6 +11,16 @@ export const fileToDataURI = async (file: File | Blob): Promise<string> => {
   })
 }
 
+export const urlToDataURI = async (url: string): Promise<string> => {
+  const response = await fetch(url)
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch image: ${response.statusText}`)
+  }
+
+  return fileToDataURI(await response.blob())
+}
+
 export const dataURItoFile = (dataURI: string, filename: string): File => {
   const byteString = atob(dataURI.split(',')[1])
 
