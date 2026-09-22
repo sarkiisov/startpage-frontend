@@ -5,6 +5,7 @@ import { useModalContext } from '@/components/modals'
 import { useLocalStorage } from '@/hooks'
 import { createSafeContext, dataURItoFile, fileToDataURI } from '@/utils'
 
+import { ConfigExportImport } from '../ConfigExportImport'
 import { SettingsForm, SettingsFormData } from '../SettingsForm'
 import { defaultSettings } from './SettingsProvider.consts'
 import { SettingsContext } from './SettingsProvider.types'
@@ -60,15 +61,18 @@ const SettingsProvider = ({ children }: React.PropsWithChildren) => {
     openModal({
       title: 'Settings',
       children: (
-        <SettingsForm
-          defaultValues={getDefaultValues as DefaultValues<SettingsFormData>}
-          onSubmit={handleFormSubmit}
-        >
-          <SettingsForm.Body />
-          <div className="mt-4 flex justify-end">
-            <SettingsForm.Actions />
-          </div>
-        </SettingsForm>
+        <div className="flex flex-col gap-4">
+          <ConfigExportImport />
+          <SettingsForm
+            defaultValues={getDefaultValues as DefaultValues<SettingsFormData>}
+            onSubmit={handleFormSubmit}
+          >
+            <SettingsForm.Body />
+            <div className="mt-4 flex justify-end">
+              <SettingsForm.Actions />
+            </div>
+          </SettingsForm>
+        </div>
       )
     })
   }, [openModal, getDefaultValues, handleFormSubmit])

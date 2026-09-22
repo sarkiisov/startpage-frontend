@@ -1,3 +1,16 @@
+export const readFileAsText = async (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      resolve(reader.result as string)
+    }
+
+    reader.onerror = reject
+
+    reader.readAsText(file)
+  })
+}
+
 export const fileToDataURI = async (file: File | Blob): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
