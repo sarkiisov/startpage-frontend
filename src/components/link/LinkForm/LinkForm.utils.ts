@@ -14,7 +14,7 @@ const isValidHTTPUrl = (str: string) => {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 
-const isFulfilled = <T,>(result: PromiseSettledResult<T>): result is PromiseFulfilledResult<T> =>
+const isFulfilled = <T>(result: PromiseSettledResult<T>): result is PromiseFulfilledResult<T> =>
   result.status === 'fulfilled'
 
 export const getFavicons = async (url: string): Promise<string[]> => {

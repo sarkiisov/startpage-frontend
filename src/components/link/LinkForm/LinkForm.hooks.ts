@@ -1,8 +1,11 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import { hasFaviconPermissions, requestFaviconPermissions } from '@/utils'
+import { useDebouncedValue } from '@/hooks'
+import { getHostname, hasFaviconPermissions, requestFaviconPermissions } from '@/utils'
 
 import { getFavicons } from './LinkForm.utils'
+
+const FAVICON_FETCH_DEBOUNCE_MS = 500
 
 export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolean }) => {
   const [data, setData] = useState<string[]>()
@@ -11,6 +14,12 @@ export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolea
   const [error, setError] = useState<string>()
   const [hasPermission, setHasPermission] = useState<boolean>()
 
+  const hostname = useMemo(() => getHostname(href), [href])
+  const debouncedHostname = useDebouncedValue(hostname, FAVICON_FETCH_DEBOUNCE_MS)
+
+  const hrefRef = useRef(href)
+  hrefRef.current = href
+
   const faviconsHandler = useCallback(async () => {
     try {
       setData(undefined)
@@ -18,7 +27,7 @@ export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolea
       setIsSuccess(false)
       setError(undefined)
 
-      await getFavicons(href).then(setData)
+      await getFavicons(hrefRef.current).then(setData)
 
       setIsSuccess(true)
     } catch (error) {
@@ -26,17 +35,17 @@ export const useFindManyFavicons = (href: string, { enabled }: { enabled: boolea
     } finally {
       setIsLoading(false)
     }
-  }, [href])
+  }, [])
 
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled || !debouncedHostname) return
 
     hasFaviconPermissions().then((granted) => {
       setHasPermission(granted)
 
       if (granted) faviconsHandler()
     })
-  }, [enabled, faviconsHandler, href])
+  }, [enabled, debouncedHostname, faviconsHandler])
 
   const requestPermission = useCallback(async () => {
     const granted = await requestFaviconPermissions()
